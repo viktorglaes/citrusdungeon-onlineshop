@@ -13,7 +13,12 @@ const { restart } = require("nodemon");
  */
 
 // router.get("/", async (req, res) => {
-//   res.send(await User.find({})).toArray();
+//   const searchField = req.query.name;
+//   await User.find({ name: { $regex: searchField, $options: "$i" } }).then(
+//     (data) => {
+//       res.send(data);
+//     }
+//   );
 // });
 
 router.post("/register", async (req, res) => {

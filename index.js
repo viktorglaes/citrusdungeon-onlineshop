@@ -35,10 +35,6 @@ mongoose
   })
   .catch((err) => console.log(`Unable to connect db ${err}`));
 
-// app.get("/products", (req, res) => {
-//   return res.send("hello");
-// });
-
 const products = require("./routes/api/products");
 app.use("/api/products", products);
 
