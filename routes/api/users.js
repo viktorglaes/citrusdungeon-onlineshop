@@ -23,7 +23,18 @@ const { restart } = require("nodemon");
 
 router.post("/register", async (req, res) => {
   try {
-    let { name, username, email, password, confirm_password } = req.body;
+    let {
+      name,
+      username,
+      email,
+      password,
+      confirm_password,
+      addressLine1,
+      addressLine2,
+      state,
+      postalCode,
+      country,
+    } = req.body;
 
     if (password !== confirm_password) {
       return res.status(400).json({
@@ -33,7 +44,7 @@ router.post("/register", async (req, res) => {
     // check for unique username
     await User.findOne({ username: username }).then((user) => {
       if (user) {
-        return res.status(400).json({
+        throw res.status(400).json({
           msg: "Username is already taken.",
         });
       }
@@ -42,7 +53,7 @@ router.post("/register", async (req, res) => {
     // check for unique email
     await User.findOne({ email: email }).then((user) => {
       if (user) {
-        return res.status(400).json({
+        throw res.status(400).json({
           msg: "Email is already registered.",
         });
       }
@@ -54,6 +65,11 @@ router.post("/register", async (req, res) => {
       username,
       password,
       email,
+      addressLine1,
+      addressLine2,
+      state,
+      postalCode,
+      country,
     });
 
     //hash password
@@ -131,5 +147,7 @@ router.get(
     });
   }
 );
+
+//write patch request for addresses
 
 module.exports = router;

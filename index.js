@@ -42,6 +42,9 @@ app.use("/api/products", products);
 const users = require("./routes/api/users");
 app.use("/api/users", users);
 
+const orders = require("./routes/api/orders");
+app.use("/api/orders", orders);
+
 const port = process.env.port || 5000;
 
 app.listen(port, () => {

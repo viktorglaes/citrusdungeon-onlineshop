@@ -6,7 +6,7 @@ const Product = require("../../model/Product");
 router.get("/", async (req, res) => {
   // res.send(await Product.find({}));
   // const searchField = req.query.title;
-  console.log(req.query);
+  // console.log(req.query);
   let reqParams = req.query;
   let typeArray = reqParams.type.split(",");
   await Product.find({
@@ -15,6 +15,10 @@ router.get("/", async (req, res) => {
   }).then((data) => {
     res.send(data);
   });
+});
+
+router.get("/product/:id", async (req, res) => {
+  res.send("you requested" + req.params.id);
 });
 
 module.exports = router;
