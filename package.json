@@ -8,6 +8,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run serve --prefix client",
+    "heroku-postbuild": "cd client && ./build.sh",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Viktor",
