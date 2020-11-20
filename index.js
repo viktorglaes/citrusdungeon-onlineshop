@@ -24,11 +24,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 //setup static dir
-app.use(express.static(path.join(__dirname, " public")));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+app.use(express.static(path.join(__dirname, "public")));
 
 //bring in database config
 const db = require("./config/keys").mongoURI;
@@ -48,6 +44,10 @@ app.use("/api/users", users);
 
 const orders = require("./routes/api/orders");
 app.use("/api/orders", orders);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 const port = process.env.port || 5000;
 
